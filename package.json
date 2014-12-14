@@ -1,0 +1,7 @@
+{
+  "name": "monitor-workers",
+  "version": "0.0.1",
+  "dependencies": {
+    "casperjs": ">=1.1"
+  }
+}
