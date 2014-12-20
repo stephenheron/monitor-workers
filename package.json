@@ -2,6 +2,9 @@
   "name": "monitor-workers",
   "version": "0.0.1",
   "dependencies": {
-    "casperjs": ">=1.1"
+    "casperjs": "~1.1",
+    "request": "~2.50",
+    "mime": ">=1.2",
+    "js-beautify": "~1.5"
   }
 }
