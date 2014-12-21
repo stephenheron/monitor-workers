@@ -5,6 +5,7 @@
     "casperjs": "~1.1",
     "request": "~2.50",
     "mime": ">=1.2",
-    "js-beautify": "~1.5"
+    "js-beautify": "~1.5",
+    "stylestats": "~4.0"
   }
 }
