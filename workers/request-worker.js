@@ -27,7 +27,8 @@ worker.addFunction('requestResource', function (job) {
     var node = spawn('node', options);
 
     spawnHelper.captureSpawnOutput(node, function(output, error, code){
-        if(code === 0){
+
+        if(code == 0){
             //USE API TO UPDATE RESOURCE DEPENDING ON TYPE
             var apiCallFailed = false;
 

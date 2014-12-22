@@ -7,18 +7,20 @@ var spawnHelper = require('../spawn_helper');
 //TODO: REMOVE ME
 var sample = {
     "snapshotID": 1,
-    "address":  "http://www.google.com"
+    "address":  "http://www.google.com",
+    "outputDir": "/tmp/"
 };
 
-worker.addFunction('generateHAR', function (job) {
+worker.addFunction('generateMirror', function (job) {
     var payLoad = JSON.parse(job.payload.toString());
     var snapshotID = payLoad.snapshotID;
     var address = payLoad.address;
+    var outputDir = payLoad.outputDir;
 
     var options = [
         '../commands/mirror.js',
         address,
-        '/tmp/'
+        outputDir
     ];
 
     var node = spawn('node', options);
