@@ -123,7 +123,7 @@ var casper = require('casper').create({
     //verbose: true,
     //logLevel: 'debug',
     onError: function(self, m) { // Any "error" level message will be written
-        console.log('FATAL:' + m); // on the console output and PhantomJS will
+        console.error('FATAL:' + m); // on the console output and PhantomJS will
         phantom.exit(1);
     }
 });
@@ -131,7 +131,7 @@ var casper = require('casper').create({
 var resources = []; // holds a list of resources of a particular page
 
 if (casper.cli.args.length < 1) {
-    console.log('Usage: har.casper.js <some URL>');
+    console.error('Usage: har.casper.js <some URL>');
     phantom.exit(1);
 } else {
     var address = casper.cli.args[0];

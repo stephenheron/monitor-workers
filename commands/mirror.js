@@ -14,7 +14,7 @@ var guid = (function() {
 })();
 
 if (process.argv.length < 4) {
-    console.log('Usage: mirror.js <some URL> <output dir>');
+    console.error('Usage: mirror.js <some URL> <output dir>');
     process.exit(1);
 } else {
     var address = process.argv[2];

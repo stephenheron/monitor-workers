@@ -1,7 +1,7 @@
 var styleStats = require('stylestats');
 
 if (process.argv.length < 3) {
-    console.log('Usage: request.js <some URL>');
+    console.error('Usage: request.js <some URL>');
     process.exit(1);
 } else {
     var address = process.argv[2];
@@ -41,7 +41,7 @@ if (process.argv.length < 3) {
     var stats = new styleStats(address, options);
     stats.parse(function (error, result) {
         if(error) {
-            console.log(error);
+            console.error(error);
             process.exit(1);
         }
         console.log(JSON.stringify(result, null, 2));

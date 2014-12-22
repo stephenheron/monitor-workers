@@ -2,7 +2,7 @@ var request = require('request');
 var mime = require('mime');
 
 if (process.argv.length < 3) {
-    console.log('Usage: request.js <some URL>');
+    console.error('Usage: request.js <some URL>');
     process.exit(1);
 } else {
     var address = process.argv[2];
@@ -14,9 +14,9 @@ if (process.argv.length < 3) {
             console.log(body);
         } else {
             if(error){
-                console.log(error);
+                console.error(error);
             } else{
-                console.log("Response: " + response.statusCode);
+                console.error("Response: " + response.statusCode);
             }
             process.exit(1);
         }

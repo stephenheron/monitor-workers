@@ -2,15 +2,15 @@ var casper = require('casper').create({
     //verbose: true,
     //logLevel: 'debug',
     onError: function(self, m) { // Any "error" level message will be written
-        console.log('FATAL:' + m); // on the console output and PhantomJS will
+        console.error('FATAL:' + m); // on the console output and PhantomJS will
         self.exit(); // terminate
         process.exit(1);
     }
 });
 
 if (casper.cli.args.length < 3) {
-    console.log('Usage: screenshot.casper.js <some URL> <width> <height>');
-    process.exit(1);
+    console.error('Usage: screenshot.casper.js <some URL> <width> <height>');
+    exit(1);
 } else {
     var address = casper.cli.args[0];
     var viewport = {
