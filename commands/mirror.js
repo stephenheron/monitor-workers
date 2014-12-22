@@ -1,6 +1,17 @@
 var path = require('path');
-var crypto = require('crypto');
 var spawn = require('child_process').spawn;
+
+var guid = (function() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return function() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    };
+})();
 
 if (process.argv.length < 4) {
     console.log('Usage: mirror.js <some URL> <output dir>');
@@ -19,7 +30,7 @@ var wgetOptions  = [
     '-e robots=off'
 ];
 
-var directoryName =  crypto.createHash('md5').update(address).digest("hex");
+var directoryName = guid();
 directoryName += "-" + Date.now();
 outputDir = path.join(outputDir, directoryName);
 var directoryPrefixOption = '--directory-prefix=' + outputDir;
@@ -37,7 +48,7 @@ wget.stderr.on('data', function (data) {
 
 wget.on('close', function(code) {
     if(code === 0) {
-        console.log(outputDir);
+        console.log(directoryName);
     } else {
         console.error("wget error");
         process.exit(code);
