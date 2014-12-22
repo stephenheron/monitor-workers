@@ -6,6 +6,7 @@
     "request": "~2.50",
     "mime": ">=1.2",
     "js-beautify": "~1.5",
-    "stylestats": "~4.0"
+    "stylestats": "~4.0",
+    "gearmanode": "~0.1"
   }
 }
