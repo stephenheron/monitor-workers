@@ -1,24 +1,23 @@
 var gearmanode = require('gearmanode');
 var worker = gearmanode.worker();
 var spawn = require('child_process').spawn;
-var spawnHelper = require('./spawn_helper');
+var spawnHelper = require('../spawn_helper');
 
 //Sample JSON
 //TODO: REMOVE ME
 var sample = {
-    "snapshotID": 1,
+    "cssFileID": 1,
     "address":  "http://www.google.com"
 };
 
-worker.addFunction('generateMirror', function (job) {
+worker.addFunction('generateCssStats', function (job) {
     var payLoad = JSON.parse(job.payload.toString());
     var snapshotID = payLoad.snapshotID;
     var address = payLoad.address;
 
     var options = [
-        './commands/mirror.js',
-        address,
-        '/tmp/'
+        '../commands/css-stats.js',
+        address
     ];
 
     var node = spawn('node', options);
@@ -27,7 +26,7 @@ worker.addFunction('generateMirror', function (job) {
         if(code === 0) {
             job.workComplete(output);
         } else {
-            job.reportError(error);
+            job.reportError(error + output);
         }
     });
 
