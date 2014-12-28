@@ -40,14 +40,14 @@ worker.addFunction('requestResource', function (job) {
 
             } else {
                 apiCallFailed = true;
-                job.reportError('Could not make the API call as the type was matched');
+                job.reportError();
             }
 
             if(apiCallFailed == false) {
                 job.workComplete(output);
             }
         } else {
-            job.reportError('Code: ' + code + '\n' + error);
+            job.reportError();
         }
     });
 

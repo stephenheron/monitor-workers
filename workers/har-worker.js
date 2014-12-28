@@ -31,7 +31,9 @@ worker.addFunction('generateHAR', function (job) {
             output = output.substr(0, output.lastIndexOf('}') + 1);
             job.workComplete(output)
         } else {
-            job.reportError(error);
+            console.log('ERROR:' + error);
+            console.log('OUTPUT:' + output);
+            job.reportError();
         }
     });
 

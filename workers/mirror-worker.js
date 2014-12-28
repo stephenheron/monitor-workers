@@ -29,7 +29,9 @@ worker.addFunction('generateMirror', function (job) {
         if(code === 0) {
             job.workComplete(output);
         } else {
-            job.reportError(error);
+            console.log('ERROR:' + error);
+            console.log('OUTPUT:' + output);
+            job.reportError();
         }
     });
 

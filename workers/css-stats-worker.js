@@ -26,7 +26,9 @@ worker.addFunction('generateCssStats', function (job) {
         if(code === 0) {
             job.workComplete(output);
         } else {
-            job.reportError(error + output);
+            console.log('ERROR:' + error);
+            console.log('OUTPUT:' + output);
+            job.reportError();
         }
     });
 

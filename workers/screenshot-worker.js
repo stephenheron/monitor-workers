@@ -34,7 +34,7 @@ worker.addFunction('generateScreenshot', function (job) {
             //USE API TO UPDATE SNAPSHOT
             job.workComplete(output);
         } else {
-            job.reportError('Code: ' + code + '\n' + error);
+            job.reportError();
         }
     });
 
