@@ -2,14 +2,7 @@ var gearmanode = require('gearmanode');
 var worker = gearmanode.worker();
 var spawn = require('child_process').spawn;
 var spawnHelper = require('../spawn_helper');
-
-//Sample JSON
-//TODO: REMOVE ME
-var sample = {
-    "snapshotID": 1,
-    "address":  "http://www.google.com",
-    "outputDir": "/tmp/"
-};
+var apiHelper = require('../api_helper');
 
 worker.addFunction('generateMirror', function (job) {
     var payLoad = JSON.parse(job.payload.toString());
@@ -27,7 +20,23 @@ worker.addFunction('generateMirror', function (job) {
 
     spawnHelper.captureSpawnOutput(node, function(output, error, code){
         if(code === 0) {
-            job.workComplete(output);
+            apiHelper.patchSnapshot(snapshotID, {mirrorDirectoryName: output},
+                function(callSuccessful, response) {
+                    if(callSuccessful) {
+                        console.log('API Call Successful');
+                        job.workComplete(output)
+                    } else {
+                        console.log('API Call Failed:');
+                        console.log(response);
+                        job.reportError();
+                    }
+                },
+                function(error) {
+                    console.log('API Call Failed:');
+                    console.log(error);
+                    job.reportError();
+               }
+            );
         } else {
             console.log('ERROR:' + error);
             console.log('OUTPUT:' + output);
